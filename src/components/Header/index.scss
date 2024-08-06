@@ -1,0 +1,42 @@
+.header {
+    position: sticky;
+    top: 0;
+    background-color: cadetblue;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+    &__logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3px 6px;
+        border-radius: 5px;
+        background-color: wheat;
+    }
+
+    &__nav {
+        display: flex;
+        gap: 10px;
+
+        &__link {
+            padding: 3px 6px;
+            border-radius: 5px;
+            background-color: wheat;
+            font-size: var(--font-size-normal);
+        }
+    }
+
+    &__search {
+        background-color: wheat;
+        padding: 3px;
+        border-radius: 5px;
+
+        &__input {
+            padding: 3px 6px;
+            border-radius: 3px;
+            border: none;
+            outline: none;
+        }
+    }
+}
