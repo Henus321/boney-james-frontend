@@ -5,6 +5,7 @@ import { beautifyCost } from "./Helpers";
 
 import ButtonBookmark from "../../components/ButtonBookmark";
 import Slider from "../../components/Slider";
+import StatusView from "../../components/StatusView";
 
 import "./index.scss";
 
@@ -19,7 +20,13 @@ const CoatPage = () => {
     if (isLoading) return null;
 
     // TODO 404 page here
-    if (isError || !data?.data) return null;
+    if (isError || !data?.data)
+        return (
+            <StatusView
+                title="Ошибка!"
+                description={"Не удалось загрузить данные"}
+            />
+        );
 
     const { name, cost, description, photoUrls } = data.data;
 

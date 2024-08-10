@@ -1,0 +1,22 @@
+.status-view {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: var(--color-gray);
+
+    svg {
+        font-size: 10rem;
+        margin-bottom: 2rem;
+    }
+
+    h2 {
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: var(--font-size-medium);
+    }
+}
