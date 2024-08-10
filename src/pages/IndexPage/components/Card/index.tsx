@@ -1,3 +1,4 @@
+import ButtonBookmark from "../../../../components/ButtonBookmark";
 import "./index.scss";
 
 const Card = () => {
@@ -16,11 +17,17 @@ const Card = () => {
 
     return (
         <div className="card">
-            <div className="card__image-container">
-                <img src={image} alt="Coat" onClick={onClick} />
-                <div className="card__image-popup">
+            <div className="card__image">
+                <img
+                    className="card__image__element"
+                    src={image}
+                    alt="Coat"
+                    onClick={onClick}
+                />
+
+                <div className="card__image__popup">
                     <h3>Добавить в корзину</h3>
-                    <div>
+                    <div className="card__image__popup__sizes">
                         {sizes.map((size, index) => (
                             <span
                                 onClick={onSizeClick}
@@ -32,11 +39,12 @@ const Card = () => {
                     </div>
                 </div>
             </div>
+
             <span>{name}</span>
             <span>{cost}</span>
-            <div className="card__actions-container">
+            <div className="card__actions">
                 <span>color picker</span>
-                <span>bookmark button</span>
+                <ButtonBookmark />
             </div>
         </div>
     );

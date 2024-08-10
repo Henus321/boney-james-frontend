@@ -9,7 +9,7 @@ const Header = () => {
     // TODO listener on top 0, to show full logo => just name with fade animation
 
     return (
-        <div className="header">
+        <header className="header">
             <nav className="header__nav">
                 <ul>
                     <li>
@@ -34,7 +34,7 @@ const Header = () => {
                 <FaShoppingBag onClick={() => console.log("Click cart")} />
                 <FaUser onClick={() => console.log("Click profile")} />
             </div>
-        </div>
+        </header>
     );
 };
 
