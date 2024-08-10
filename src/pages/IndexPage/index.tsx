@@ -1,14 +1,27 @@
+import { useQuery } from "@tanstack/react-query";
+import { getAllCoats } from "./requests";
+
 import Card from "./components/Card";
 import Grid from "./components/Grid";
 
 import "./index.scss";
 
 const IndexPage = () => {
+    const { data, isError, isLoading } = useQuery({
+        queryKey: ["getAllCoats"],
+        queryFn: getAllCoats,
+    });
+
+    // TODO loading/error/no data fallback (loader and image)
+    if (isLoading) return null;
+
+    if (isError || !data?.data) return null;
+    console.log(data.data);
     return (
         <div className="index-page">
             <Grid>
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((card) => (
-                    <Card key={card} />
+                {data.data.map((coat) => (
+                    <Card key={coat._id} coat={coat} />
                 ))}
             </Grid>
         </div>

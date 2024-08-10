@@ -1,15 +1,15 @@
+import { ICoat } from "../../../../types/coat";
+
 import ButtonBookmark from "../../../../components/ButtonBookmark";
+
 import "./index.scss";
 
-const Card = () => {
-    // TODO сверстать с нуля
-    // TODO refactor styles and naming, decrease hover size
+type CardProps = {
+    coat: ICoat;
+};
 
-    const name = "Пальто классическое";
-    const sizes = ["42 XS", "44 S", "46 M", "48 L"];
-    const cost = 12000;
-    const image =
-        "https://firebasestorage.googleapis.com/v0/b/boney-james-c978c.appspot.com/o/2016%2F2021-a-003-2.jpg?alt=media&token=e1de9b6c-2d36-4379-8599-d6346a3e8608";
+const Card = ({ coat }: CardProps) => {
+    const { photoUrls, sizes, name, cost } = coat;
 
     const onClick = () => {};
 
@@ -20,7 +20,7 @@ const Card = () => {
             <div className="card__image">
                 <img
                     className="card__image__element"
-                    src={image}
+                    src={photoUrls[0]}
                     alt="Coat"
                     onClick={onClick}
                 />
