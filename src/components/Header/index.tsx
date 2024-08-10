@@ -1,31 +1,40 @@
 import { Link } from "react-router-dom";
 import { RoutesStructure } from "../../config";
+import { FaHeart, FaShoppingBag, FaUser } from "react-icons/fa";
+//import logo from "../../assets/logo.png";
 
 import "./index.scss";
 
 const Header = () => {
-    return (
-        <div className="header">
-            <div className="header__logo">
-                <h4>Logo</h4>
-            </div>
+    // TODO listener on top 0, to show full logo => just name with fade animation
 
+    return (
+        <header className="header">
             <nav className="header__nav">
-                <Link
-                    className="header__nav__link"
-                    to={RoutesStructure.Index.index}
-                >
-                    Home
-                </Link>
+                <ul>
+                    <li>
+                        <Link to="/">Главная</Link>
+                    </li>
+                    <li>
+                        <Link to="/">Магазины</Link>
+                    </li>
+                    <li>
+                        <Link to="/">Покупателям</Link>
+                    </li>
+                </ul>
             </nav>
 
-            <div className="header__search">
-                <input
-                    className="header__search__input"
-                    placeholder="search..."
-                />
+            <Link className="header__logo" to={RoutesStructure.Index}>
+                {/*<img src={logo} alt="logo" />*/}
+                <h1>BONEY JAMES</h1>
+            </Link>
+
+            <div className="header__menu">
+                <FaHeart onClick={() => console.log("Click bookmark")} />
+                <FaShoppingBag onClick={() => console.log("Click cart")} />
+                <FaUser onClick={() => console.log("Click profile")} />
             </div>
-        </div>
+        </header>
     );
 };
 

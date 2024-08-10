@@ -1,42 +1,79 @@
 .header {
     position: sticky;
     top: 0;
-    background-color: cadetblue;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-
-    &__logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 3px 6px;
-        border-radius: 5px;
-        background-color: wheat;
-    }
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr min-content 1fr;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 3rem;
+    background-color: var(--color-white);
 
     &__nav {
         display: flex;
         gap: 10px;
 
-        &__link {
-            padding: 3px 6px;
-            border-radius: 5px;
-            background-color: wheat;
-            font-size: var(--font-size-normal);
+        ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+
+            li {
+                position: relative;
+
+                a {
+                    display: flex;
+                    padding: 0.5rem 1rem;
+                    border-radius: 5px;
+                    font-size: var(--font-size-normal);
+                    text-decoration: none;
+                    color: var(--text-primary);
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 2px;
+                        background-color: var(--color-black-transparent);
+                        transform: scaleX(0);
+                        transition: all 0.5s ease;
+                    }
+
+                    &:hover::after {
+                        transform: scaleX(0.85);
+                    }
+                }
+            }
         }
     }
 
-    &__search {
-        background-color: wheat;
-        padding: 3px;
-        border-radius: 5px;
+    &__logo {
+        padding: 0.5rem 2rem;
+        text-decoration: none;
 
-        &__input {
-            padding: 3px 6px;
-            border-radius: 3px;
-            border: none;
-            outline: none;
+        h1 {
+            font-weight: normal;
+            letter-spacing: 0.5rem;
+            white-space: nowrap;
+            font-size: var(--font-size-largest);
+            color: var(--text-primary);
+        }
+    }
+
+    &__menu {
+        display: flex;
+        margin-left: auto;
+        gap: 2.5rem;
+
+        svg {
+            font-size: var(--font-size-large);
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.85;
+            }
         }
     }
 }
