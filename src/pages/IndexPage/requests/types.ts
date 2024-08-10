@@ -1,5 +1,5 @@
-import { ICoat } from "../../../types/coat";
+import { CoatType } from "../../../types/coat";
 
 export type GetAllCoatsResponseType = {
-    data: ICoat[];
+    data: CoatType[];
 };

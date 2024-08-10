@@ -1,17 +1,22 @@
-import { ICoat } from "../../../../types/coat";
+import { CoatType } from "../../../../types/coat";
+import { useNavigate } from "react-router-dom";
+import { RoutesStructure } from "../../../../config";
 
 import ButtonBookmark from "../../../../components/ButtonBookmark";
 
 import "./index.scss";
 
 type CardProps = {
-    coat: ICoat;
+    coat: CoatType;
 };
 
 const Card = ({ coat }: CardProps) => {
-    const { photoUrls, sizes, name, cost } = coat;
+    const { photoUrls, sizes, name, cost, _id } = coat;
 
-    const onClick = () => {};
+    const navigate = useNavigate();
+
+    const onClick = (id: string) =>
+        navigate(RoutesStructure.Coat.replace(":id", id));
 
     const onSizeClick = () => {};
 
@@ -22,7 +27,7 @@ const Card = ({ coat }: CardProps) => {
                     className="card__image__element"
                     src={photoUrls[0]}
                     alt="Coat"
-                    onClick={onClick}
+                    onClick={() => onClick(_id)}
                 />
 
                 <div className="card__image__popup">

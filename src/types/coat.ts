@@ -1,4 +1,4 @@
-export interface ICoat {
+export type CoatType = {
     _id: string;
     cost: number;
     description: string;
@@ -6,11 +6,11 @@ export interface ICoat {
     name: string;
     type: string;
     photoUrls: string[];
-    color: IColor;
+    color: ColorType;
     sizes: string[];
-}
+};
 
-export interface IColor {
+export type ColorType = {
     label: string;
     hex: string;
-}
+};

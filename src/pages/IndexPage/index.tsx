@@ -16,7 +16,7 @@ const IndexPage = () => {
     if (isLoading) return null;
 
     if (isError || !data?.data) return null;
-    console.log(data.data);
+
     return (
         <div className="index-page">
             <Grid>

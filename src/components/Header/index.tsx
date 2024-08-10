@@ -24,7 +24,7 @@ const Header = () => {
                 </ul>
             </nav>
 
-            <Link className="header__logo" to={RoutesStructure.Index.index}>
+            <Link className="header__logo" to={RoutesStructure.Index}>
                 {/*<img src={logo} alt="logo" />*/}
                 <h1>BONEY JAMES</h1>
             </Link>
