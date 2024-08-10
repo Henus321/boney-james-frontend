@@ -25,7 +25,6 @@ const CoatPage = () => {
 
     return (
         <div className="coat-page">
-            {/*<div className="coat-page__slider__wrapper">*/}
             <Slider
                 className="coat-page__slider"
                 Slides={photoUrls.map((photo) => (
@@ -36,10 +35,8 @@ const CoatPage = () => {
                     />
                 ))}
             />
-            {/*</div>*/}
 
             <div className="coat-page__description">
-                {/*<Breadcrumb payload={item.name} />*/}
                 <h4>{name}</h4>
                 <span>{beautifyCost(cost)}</span>
                 <p>{description}</p>
