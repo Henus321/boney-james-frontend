@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { RoutesStructure } from "../../config";
 import logo from "../../assets/logo.png";
 
 import Button from "../Button";
@@ -10,6 +12,12 @@ type StatusViewProps = {
 };
 
 const StatusView = ({ title, description }: StatusViewProps) => {
+    const navigate = useNavigate();
+
+    const onReload = () => window.location.reload();
+
+    const onAa = () => navigate(RoutesStructure.Index);
+
     return (
         <div className="status-view">
             <img className="status-view__logo" src={logo}></img>
@@ -17,9 +25,8 @@ const StatusView = ({ title, description }: StatusViewProps) => {
             <p>{description}</p>
 
             <div className="status-view__actions">
-                {/* TODO actions */}
-                <Button onClick={() => {}}>Перезагрузить страницу</Button>
-                <Button onClick={() => {}}>На главную</Button>
+                <Button onClick={onReload}>Перезагрузить страницу</Button>
+                <Button onClick={onAa}>На главную</Button>
             </div>
         </div>
     );

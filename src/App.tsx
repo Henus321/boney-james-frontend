@@ -2,10 +2,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { RoutesStructure } from "./config";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import ErrorBoundary from "./components/ErrorBoundary";
 import Layout from "./components/Layout";
 import IndexPage from "./pages/IndexPage";
 import CoatPage from "./pages/CoatPage";
-import ErrorBoundary from "./components/ErrorBoundary";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,8 @@ const App = () => {
                                 path={RoutesStructure.Coat}
                                 element={<CoatPage />}
                             />
+
+                            <Route path="*" element={<NotFoundPage />} />
                         </Route>
                     </Routes>
                 </ErrorBoundary>
