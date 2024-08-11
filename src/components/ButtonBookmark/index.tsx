@@ -1,4 +1,5 @@
 import { FaHeart } from "react-icons/fa";
+import { toast } from "react-toastify";
 import classNames from "classnames";
 
 import "./index.scss";
@@ -8,7 +9,9 @@ type ButtonBookmarkProps = {
 };
 
 const ButtonBookmark = ({ className }: ButtonBookmarkProps) => {
-    const onClick = () => {};
+    const onClick = () => {
+        toast.success("test");
+    };
 
     return (
         <button

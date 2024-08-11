@@ -5,6 +5,8 @@ import Card from "./components/Card";
 import Grid from "./components/Grid";
 
 import "./index.scss";
+import Loader from "../../components/Loader";
+import StatusView from "../../components/StatusView";
 
 const IndexPage = () => {
     const { data, isError, isLoading } = useQuery({
@@ -12,10 +14,15 @@ const IndexPage = () => {
         queryFn: getAllCoats,
     });
 
-    // TODO loading/error/no data fallback (loader and image)
-    if (isLoading) return null;
+    if (isLoading) return <Loader />;
 
-    if (isError || !data?.data) return null;
+    if (isError || !data?.data)
+        return (
+            <StatusView
+                title="Ошибка!"
+                description="Не удалось загрузить данные"
+            />
+        );
 
     return (
         <div className="index-page">

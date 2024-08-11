@@ -5,8 +5,10 @@ import { beautifyCost } from "./Helpers";
 
 import ButtonBookmark from "../../components/ButtonBookmark";
 import Slider from "../../components/Slider";
+import StatusView from "../../components/StatusView";
 
 import "./index.scss";
+import Loader from "../../components/Loader";
 
 const CoatPage = () => {
     const { id = "" } = useParams();
@@ -15,11 +17,15 @@ const CoatPage = () => {
         queryFn: () => getCoatById(id),
     });
 
-    // TODO loading/error/no data fallback (loader and image)
-    if (isLoading) return null;
+    if (isLoading) return <Loader />;
 
-    // TODO 404 page here
-    if (isError || !data?.data) return null;
+    if (isError || !data?.data)
+        return (
+            <StatusView
+                title="Ошибка!"
+                description="Не удалось загрузить данные"
+            />
+        );
 
     const { name, cost, description, photoUrls } = data.data;
 
