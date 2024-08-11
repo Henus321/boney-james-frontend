@@ -13,7 +13,8 @@ const IndexPage = () => {
         queryKey: ["getAllCoats"],
         queryFn: getAllCoats,
     });
-
+    const aa: any = [12];
+    console.log(aa[3].name);
     if (isLoading) return <Loader />;
 
     if (isError || !data?.data)

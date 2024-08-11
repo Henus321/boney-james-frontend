@@ -1,4 +1,6 @@
-import { FaGhost } from "react-icons/fa";
+import logo from "../../assets/logo.png";
+
+import Button from "../Button";
 
 import "./index.scss";
 
@@ -10,10 +12,15 @@ type StatusViewProps = {
 const StatusView = ({ title, description }: StatusViewProps) => {
     return (
         <div className="status-view">
-            {/* TODO breadcrumb + change styles naming (h2, p) */}
-            <FaGhost />
+            <img className="status-view__logo" src={logo}></img>
             <h2>{title}</h2>
             <p>{description}</p>
+
+            <div className="status-view__actions">
+                {/* TODO actions */}
+                <Button onClick={() => {}}>Перезагрузить страницу</Button>
+                <Button onClick={() => {}}>На главную</Button>
+            </div>
         </div>
     );
 };
