@@ -1,0 +1,36 @@
+.typo {
+    &__h1 {
+        font-weight: normal;
+        letter-spacing: 0.5rem;
+        text-transform: uppercase;
+        white-space: nowrap;
+        color: var(--text-primary);
+    }
+
+    &__h2 {
+        font-weight: normal;
+        letter-spacing: 0.3rem;
+        text-transform: uppercase;
+        white-space: nowrap;
+        color: var(--text-primary);
+    }
+
+    &__h3 {
+        font-weight: normal;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+        white-space: nowrap;
+        color: var(--text-primary);
+    }
+
+    &__h4 {
+        font-weight: normal;
+        white-space: nowrap;
+        color: var(--text-primary);
+    }
+
+    &__span {
+        color: var(--text-tertiary);
+        white-space: nowrap;
+    }
+}

@@ -6,9 +6,13 @@ import { beautifyCost } from "./Helpers";
 import ButtonBookmark from "../../components/ButtonBookmark";
 import Slider from "../../components/Slider";
 import StatusView from "../../components/StatusView";
+import Loader from "../../components/Loader";
+import Breadcrumb from "../../components/Breadcrumb";
 
 import "./index.scss";
-import Loader from "../../components/Loader";
+import { RoutesStructure } from "../../config";
+import Typo from "../../components/Typo";
+import Button from "../../components/Button";
 
 const CoatPage = () => {
     const { id = "" } = useParams();
@@ -43,13 +47,24 @@ const CoatPage = () => {
             />
 
             <div className="coat-page__description">
-                <h4>{name}</h4>
+                <Breadcrumb
+                    options={[
+                        {
+                            path: RoutesStructure.Index,
+                            label: "Главная",
+                        },
+                        {
+                            label: name,
+                        },
+                    ]}
+                />
+                <Typo type="h3">{name}</Typo>
                 <span>{beautifyCost(cost)}</span>
                 <p>{description}</p>
                 {/* TODO color picker */}
                 {/* TODO size picker */}
                 <div className="coat-page__description__actions">
-                    {/* TODO cart */}
+                    <Button onClick={() => {}}>В Корзину</Button>
                     <ButtonBookmark />
                 </div>
             </div>
