@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { RoutesStructure } from "../../../../config";
 
 import ButtonBookmark from "../../../../components/ButtonBookmark";
+import Typo from "../../../../components/Typo";
 
 import "./index.scss";
 
@@ -31,7 +32,7 @@ const Card = ({ coat }: CardProps) => {
                 />
 
                 <div className="card__image__popup">
-                    <h3>Добавить в корзину</h3>
+                    <Typo type="h3">Добавить в корзину</Typo>
                     <div className="card__image__popup__sizes">
                         {sizes.map((size, index) => (
                             <span

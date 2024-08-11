@@ -4,7 +4,7 @@ import "./index.scss";
 
 type TypoProps = {
     children: React.ReactNode;
-    type: "h1" | "h2" | "h3" | "h4" | "span" | "paragraph";
+    type?: "h1" | "h2" | "h3" | "h4" | "span" | "paragraph";
     className?: string;
 };
 
