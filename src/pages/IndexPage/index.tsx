@@ -3,10 +3,11 @@ import { getAllCoats } from "./requests";
 
 import Card from "./components/Card";
 import Grid from "./components/Grid";
-
-import "./index.scss";
 import Loader from "../../components/Loader";
 import StatusView from "../../components/StatusView";
+import PageHead from "../../components/PageHead";
+
+import "./index.scss";
 
 const IndexPage = () => {
     const { data, isError, isLoading } = useQuery({
@@ -26,6 +27,18 @@ const IndexPage = () => {
 
     return (
         <div className="index-page">
+            <PageHead
+                breadcrumbOptions={[
+                    {
+                        label: "Главная",
+                    },
+                    {
+                        label: "Коллекция",
+                    },
+                ]}
+                title="Коллекция женских пальто"
+            />
+
             <Grid>
                 {data.data.map((coat) => (
                     <Card key={coat._id} coat={coat} />

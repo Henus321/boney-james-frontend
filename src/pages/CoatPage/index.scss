@@ -1,7 +1,9 @@
 .coat-page {
     display: flex;
     height: 100%;
+    width: 100%;
     gap: 2rem;
+    margin-bottom: 5rem;
 
     &__slider {
         flex: 3.2;
@@ -25,6 +27,7 @@
         &__actions {
             display: flex;
             margin-top: auto;
+            gap: 1.25rem;
         }
     }
 }

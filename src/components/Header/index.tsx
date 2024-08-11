@@ -4,6 +4,7 @@ import { FaHeart, FaShoppingBag, FaUser } from "react-icons/fa";
 //import logo from "../../assets/logo.png";
 
 import "./index.scss";
+import Typo from "../Typo";
 
 const Header = () => {
     // TODO listener on top 0, to show full logo => just name with fade animation
@@ -26,7 +27,7 @@ const Header = () => {
 
             <Link className="header__logo" to={RoutesStructure.Index}>
                 {/*<img src={logo} alt="logo" />*/}
-                <h1>BONEY JAMES</h1>
+                <Typo type="h1">Boney james</Typo>
             </Link>
 
             <div className="header__menu">

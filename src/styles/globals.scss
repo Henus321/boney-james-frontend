@@ -19,3 +19,21 @@ body {
     -moz-osx-font-smoothing: grayscale;
     font-size: var(--font-size-default);
 }
+
+img {
+    user-select: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-primary);
+
+    &:hover {
+        color: var(--text-secondary);
+    }
+}
+
+::selection {
+    background-color: var(--color-gray);
+    color: var(--color-milk);
+}
