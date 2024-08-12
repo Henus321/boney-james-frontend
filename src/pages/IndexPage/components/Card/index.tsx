@@ -1,9 +1,11 @@
 import { CoatType } from "../../../../types/coat";
 import { useNavigate } from "react-router-dom";
 import { RoutesStructure } from "../../../../config";
+import { useState } from "react";
 
 import ButtonBookmark from "../../../../components/ButtonBookmark";
 import Typo from "../../../../components/Typo";
+import ColorPicker from "../../../../components/ColorPicker";
 
 import "./index.scss";
 
@@ -13,6 +15,7 @@ type CardProps = {
 
 const Card = ({ coat }: CardProps) => {
     const { colors, sizes, name, cost, _id } = coat;
+    const [color, setColor] = useState(colors[0]);
     const navigate = useNavigate();
 
     const onClick = (id: string) =>
@@ -25,7 +28,7 @@ const Card = ({ coat }: CardProps) => {
             <div className="card__image">
                 <img
                     className="card__image__element"
-                    src={colors[0].photoUrls[0]}
+                    src={color.photoUrls[0]}
                     alt="Coat"
                     onClick={() => onClick(_id)}
                 />
@@ -48,7 +51,12 @@ const Card = ({ coat }: CardProps) => {
             <span>{name}</span>
             <span>{cost}</span>
             <div className="card__actions">
-                <span>color picker</span>
+                <ColorPicker
+                    type="mini"
+                    currentColor={color}
+                    colors={colors}
+                    onChange={(newColor) => setColor(newColor)}
+                />
                 <ButtonBookmark />
             </div>
         </div>

@@ -6,7 +6,6 @@
     &__image {
         position: relative;
         display: flex;
-        margin-bottom: 0.5rem;
         overflow: hidden;
         cursor: pointer;
 
@@ -73,5 +72,6 @@
         justify-content: space-between;
         align-items: center;
         margin-right: 1rem;
+        margin-top: 0.5rem;
     }
 }

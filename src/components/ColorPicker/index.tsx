@@ -8,11 +8,22 @@ type ColorPickerProps = {
     currentColor: ColorType;
     colors: ColorType[];
     onChange: (newColor: ColorType) => void;
+    type?: "default" | "mini";
 };
 
-const ColorPicker = ({ currentColor, colors, onChange }: ColorPickerProps) => {
+const ColorPicker = ({
+    currentColor,
+    colors,
+    onChange,
+    type = "default",
+}: ColorPickerProps) => {
     return (
-        <div className="color-picker">
+        <div
+            className={classNames(
+                "color-picker",
+                type === "mini" && "color-picker--mini"
+            )}
+        >
             {colors.map((color, index) => (
                 <div
                     className={classNames(
@@ -32,9 +43,11 @@ const ColorPicker = ({ currentColor, colors, onChange }: ColorPickerProps) => {
                         />
                     </div>
 
-                    <Typo className="color-picker__item__label" type="span">
-                        {color.label}
-                    </Typo>
+                    {type === "mini" ? null : (
+                        <Typo className="color-picker__item__label" type="span">
+                            {color.label}
+                        </Typo>
+                    )}
                 </div>
             ))}
         </div>

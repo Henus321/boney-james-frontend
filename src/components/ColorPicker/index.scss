@@ -4,6 +4,11 @@
     width: fit-content;
     gap: 0.5rem;
 
+    &--mini {
+        flex-direction: row;
+        gap: 0.3rem;
+    }
+
     &__item {
         display: flex;
         align-items: center;
