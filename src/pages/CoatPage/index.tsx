@@ -1,9 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { getCoatById } from "./requests";
 import { beautifyCost } from "./Helpers";
 import { RoutesStructure } from "../../config";
-import { useState } from "react";
 
 import ButtonBookmark from "../../components/ButtonBookmark";
 import Slider from "../../components/Slider";
@@ -18,7 +17,8 @@ import "./index.scss";
 
 const CoatPage = () => {
     const { id = "" } = useParams();
-    const [colorIndex, setColorIndex] = useState(0);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const color = searchParams.get("color") || "";
     const { data, isError, isLoading } = useQuery({
         queryKey: ["getCoatById"],
         queryFn: () => getCoatById(id),
@@ -35,13 +35,13 @@ const CoatPage = () => {
         );
 
     const { name, cost, description, colors } = data.data;
-    const photos = colors[colorIndex].photoUrls;
+    const currentColor = colors.find((c) => c.label === color) || colors[0];
 
     return (
         <div className="coat-page">
             <Slider
                 className="coat-page__slider"
-                Slides={photos.map((photo) => (
+                Slides={currentColor.photoUrls.map((photo) => (
                     <img
                         className="coat-page__slider__image"
                         src={photo}
@@ -69,9 +69,11 @@ const CoatPage = () => {
                 <span>{beautifyCost(cost)}</span>
                 <p>{description}</p>
                 <ColorPicker
+                    currentColor={currentColor}
                     colors={colors}
-                    onIndexChange={(index) => setColorIndex(index)}
-                    currentIndex={colorIndex}
+                    onChange={(newColor) =>
+                        setSearchParams({ color: newColor.label })
+                    }
                 />
                 {/* TODO size picker */}
                 <div className="coat-page__description__actions">
