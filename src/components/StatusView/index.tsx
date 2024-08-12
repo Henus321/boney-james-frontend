@@ -20,6 +20,7 @@ const StatusView = ({ title, description }: StatusViewProps) => {
 
     return (
         <div className="status-view">
+            {/* TODO some picture/logo 404 */}
             <Typo type="h1">Boney james</Typo>
             <Typo type="h2">{title}</Typo>
             <Typo>{description}</Typo>

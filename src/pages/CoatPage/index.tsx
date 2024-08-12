@@ -1,21 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { getCoatById } from "./requests";
 import { beautifyCost } from "./Helpers";
+import { RoutesStructure } from "../../config";
 
 import ButtonBookmark from "../../components/ButtonBookmark";
 import Slider from "../../components/Slider";
 import StatusView from "../../components/StatusView";
 import Loader from "../../components/Loader";
 import Breadcrumb from "../../components/Breadcrumb";
-
-import "./index.scss";
-import { RoutesStructure } from "../../config";
 import Typo from "../../components/Typo";
 import Button from "../../components/Button";
+import ColorPicker from "../../components/ColorPicker";
+
+import "./index.scss";
 
 const CoatPage = () => {
     const { id = "" } = useParams();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const color = searchParams.get("color") || "";
     const { data, isError, isLoading } = useQuery({
         queryKey: ["getCoatById"],
         queryFn: () => getCoatById(id),
@@ -31,13 +34,14 @@ const CoatPage = () => {
             />
         );
 
-    const { name, cost, description, photoUrls } = data.data;
+    const { name, cost, description, colors } = data.data;
+    const currentColor = colors.find((c) => c.label === color) || colors[0];
 
     return (
         <div className="coat-page">
             <Slider
                 className="coat-page__slider"
-                Slides={photoUrls.map((photo) => (
+                Slides={currentColor.photoUrls.map((photo) => (
                     <img
                         className="coat-page__slider__image"
                         src={photo}
@@ -54,6 +58,9 @@ const CoatPage = () => {
                             label: "Главная",
                         },
                         {
+                            label: "Коллекция",
+                        },
+                        {
                             label: name,
                         },
                     ]}
@@ -61,7 +68,13 @@ const CoatPage = () => {
                 <Typo type="h3">{name}</Typo>
                 <span>{beautifyCost(cost)}</span>
                 <p>{description}</p>
-                {/* TODO color picker */}
+                <ColorPicker
+                    currentColor={currentColor}
+                    colors={colors}
+                    onChange={(newColor) =>
+                        setSearchParams({ color: newColor.label })
+                    }
+                />
                 {/* TODO size picker */}
                 <div className="coat-page__description__actions">
                     <Button onClick={() => {}}>В Корзину</Button>
