@@ -5,12 +5,12 @@ export type CoatType = {
     model: string;
     name: string;
     type: string;
-    photoUrls: string[];
-    color: ColorType;
+    colors: ColorType[];
     sizes: string[];
 };
 
 export type ColorType = {
     label: string;
     hex: string;
+    photoUrls: string[];
 };

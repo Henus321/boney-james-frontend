@@ -1,3 +1,6 @@
+import React from "react";
+import { FaFacebook, FaInstagram, FaVk, FaYoutube } from "react-icons/fa";
+
 const BASE_URL = "http://localhost:8080";
 
 export const Requests = {
@@ -9,9 +12,6 @@ export const RoutesStructure = {
     Index: "/",
     Coat: "/coat/:id",
 };
-
-import React from "react";
-import { FaFacebook, FaInstagram, FaVk, FaYoutube } from "react-icons/fa";
 
 export const SocialNetworks = [
     {

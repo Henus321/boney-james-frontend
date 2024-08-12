@@ -1,0 +1,10 @@
+.color-picker {
+    &__item {
+        border: 1px solid transparent;
+        padding: 2px;
+
+        &--active {
+            border: 1px solid red;
+        }
+    }
+}

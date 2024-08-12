@@ -12,8 +12,7 @@ type CardProps = {
 };
 
 const Card = ({ coat }: CardProps) => {
-    const { photoUrls, sizes, name, cost, _id } = coat;
-
+    const { colors, sizes, name, cost, _id } = coat;
     const navigate = useNavigate();
 
     const onClick = (id: string) =>
@@ -26,7 +25,7 @@ const Card = ({ coat }: CardProps) => {
             <div className="card__image">
                 <img
                     className="card__image__element"
-                    src={photoUrls[0]}
+                    src={colors[0].photoUrls[0]}
                     alt="Coat"
                     onClick={() => onClick(_id)}
                 />
