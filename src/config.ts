@@ -1,12 +1,13 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaVk, FaYoutube } from "react-icons/fa";
+import { ShopCityType, ShopTypesOptionType, ShopTypesType } from "./types/shop";
 
-const BASE_URL = "http://localhost:8080";
+const BaseUrl = "http://localhost:8080";
 
 export const Requests = {
-    GetAllCoats: BASE_URL + "/api/v1/coat",
-    GetCoatById: BASE_URL + "/api/v1/coat/:id",
-    GetAllShops: BASE_URL + "/api/v1/shop",
+    GetAllCoats: BaseUrl + "/api/v1/coat",
+    GetCoatById: BaseUrl + "/api/v1/coat/:id",
+    GetAllShops: BaseUrl + "/api/v1/shop",
 };
 
 export const RoutesStructure = {
@@ -15,6 +16,32 @@ export const RoutesStructure = {
     Shop: "/shop",
     Customer: "/customer",
 };
+
+export const CitiesOptions: ShopCityType[] = [
+    "" as ShopCityType,
+    "Москва",
+    "Санкт-Петербург",
+    "Владивосток",
+];
+
+export const ShopTypeOptions: ShopTypesOptionType[] = [
+    {
+        value: "" as ShopTypesType,
+        label: "",
+    },
+    {
+        value: "child",
+        label: "Одежда для детей",
+    },
+    {
+        value: "woman",
+        label: "Одежда для женщин",
+    },
+    {
+        value: "man",
+        label: "Одежда для мужчин",
+    },
+];
 
 export const SocialNetworks = [
     {
