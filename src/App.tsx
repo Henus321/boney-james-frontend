@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 
 import ErrorBoundary from "./components/ErrorBoundary";
 import Layout from "./components/Layout";
-import IndexPage from "./pages/IndexPage";
+import IndexPage from "./pages/HomePage";
 import CoatPage from "./pages/CoatPage";
 import ShopPage from "./pages/ShopPage";
 import CustomerPage from "./pages/CustomerPage";

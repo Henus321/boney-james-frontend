@@ -9,4 +9,4 @@ export type ShopType = {
     types: ShopTypesType[];
 };
 
-export type ShopTypesType = "woman" | "man" | "children";
+export type ShopTypesType = "woman" | "man" | "child";

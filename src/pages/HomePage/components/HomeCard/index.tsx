@@ -9,11 +9,11 @@ import ColorPicker from "../../../../components/ColorPicker";
 
 import "./index.scss";
 
-type CardProps = {
+type HomeCardProps = {
     coat: CoatType;
 };
 
-const Card = ({ coat }: CardProps) => {
+const HomeCard = ({ coat }: HomeCardProps) => {
     const { colors, sizes, name, cost, _id } = coat;
     const [color, setColor] = useState(colors[0]);
     const navigate = useNavigate();
@@ -24,18 +24,18 @@ const Card = ({ coat }: CardProps) => {
     const onSizeClick = () => {};
 
     return (
-        <div className="card">
-            <div className="card__image">
+        <div className="home-card">
+            <div className="home-card__image">
                 <img
-                    className="card__image__element"
+                    className="home-card__image__element"
                     src={color.photoUrls[0]}
                     alt="Coat"
                     onClick={() => onClick(_id)}
                 />
 
-                <div className="card__image__popup">
+                <div className="home-card__image__popup">
                     <Typo type="h3">Добавить в корзину</Typo>
-                    <div className="card__image__popup__sizes">
+                    <div className="home-card__image__popup__sizes">
                         {sizes.map((size, index) => (
                             <span
                                 onClick={onSizeClick}
@@ -50,7 +50,7 @@ const Card = ({ coat }: CardProps) => {
 
             <span>{name}</span>
             <span>{cost}</span>
-            <div className="card__actions">
+            <div className="home-card__actions">
                 <ColorPicker
                     type="mini"
                     currentColor={color}
@@ -63,4 +63,4 @@ const Card = ({ coat }: CardProps) => {
     );
 };
 
-export default Card;
+export default HomeCard;

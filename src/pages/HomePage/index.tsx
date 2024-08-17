@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllCoats } from "./requests";
 
-import Card from "./components/Card";
-import Grid from "./components/Grid";
+import HomeCard from "./components/HomeCard";
+import Grid from "../../components/Grid";
 import Loader from "../../components/Loader";
 import StatusView from "../../components/StatusView";
 import PageHead from "../../components/PageHead";
 
 import "./index.scss";
 
-const IndexPage = () => {
+const HomePage = () => {
     const { data, isError, isLoading } = useQuery({
         queryKey: ["getAllCoats"],
         queryFn: getAllCoats,
@@ -41,11 +41,11 @@ const IndexPage = () => {
 
             <Grid>
                 {data.data.map((coat) => (
-                    <Card key={coat._id} coat={coat} />
+                    <HomeCard key={coat._id} coat={coat} />
                 ))}
             </Grid>
         </div>
     );
 };
 
-export default IndexPage;
+export default HomePage;
