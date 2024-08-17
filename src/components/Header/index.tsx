@@ -36,8 +36,7 @@ const Header = () => {
                         <Link to={RoutesStructure.Index}>Главная</Link>
                     </li>
                     <li>
-                        {/* TODO route/page */}
-                        <Link to="/">Магазины</Link>
+                        <Link to={RoutesStructure.Shop}>Магазины</Link>
                     </li>
                     <li>
                         {/* TODO route/page */}

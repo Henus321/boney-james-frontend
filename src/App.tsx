@@ -7,6 +7,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import Layout from "./components/Layout";
 import IndexPage from "./pages/IndexPage";
 import CoatPage from "./pages/CoatPage";
+import ShopPage from "./pages/ShopPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -28,6 +29,10 @@ const App = () => {
                             <Route
                                 path={RoutesStructure.Coat}
                                 element={<CoatPage />}
+                            />
+                            <Route
+                                path={RoutesStructure.Shop}
+                                element={<ShopPage />}
                             />
 
                             <Route path="*" element={<NotFoundPage />} />
