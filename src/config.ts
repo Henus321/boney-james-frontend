@@ -13,6 +13,7 @@ export const RoutesStructure = {
     Index: "/",
     Coat: "/coat/:id",
     Shop: "/shop",
+    Customer: "/customer",
 };
 
 export const SocialNetworks = [

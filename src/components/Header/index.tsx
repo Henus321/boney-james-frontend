@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { RoutesStructure } from "../../config";
 import { FaHeart, FaShoppingBag, FaUser } from "react-icons/fa";
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import "./index.scss";
 
 const Header = () => {
     const [headerType, setHeaderType] = useState<"full" | "small">("full");
+    const { pathname } = useLocation();
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll, { passive: true });
@@ -33,14 +34,40 @@ const Header = () => {
             <nav className="header__nav">
                 <ul>
                     <li>
-                        <Link to={RoutesStructure.Index}>Главная</Link>
+                        <Link
+                            className={classNames(
+                                "header__nav__link",
+                                RoutesStructure.Index === pathname &&
+                                    "header__nav__link--active"
+                            )}
+                            to={RoutesStructure.Index}
+                        >
+                            Главная
+                        </Link>
                     </li>
                     <li>
-                        <Link to={RoutesStructure.Shop}>Магазины</Link>
+                        <Link
+                            className={classNames(
+                                "header__nav__link",
+                                RoutesStructure.Shop === pathname &&
+                                    "header__nav__link--active"
+                            )}
+                            to={RoutesStructure.Shop}
+                        >
+                            Магазины
+                        </Link>
                     </li>
                     <li>
-                        {/* TODO route/page */}
-                        <Link to="/">Покупателям</Link>
+                        <Link
+                            className={classNames(
+                                "header__nav__link",
+                                RoutesStructure.Customer === pathname &&
+                                    "header__nav__link--active"
+                            )}
+                            to={RoutesStructure.Customer}
+                        >
+                            Покупателям
+                        </Link>
                     </li>
                 </ul>
             </nav>

@@ -8,6 +8,7 @@ import Layout from "./components/Layout";
 import IndexPage from "./pages/IndexPage";
 import CoatPage from "./pages/CoatPage";
 import ShopPage from "./pages/ShopPage";
+import CustomerPage from "./pages/CustomerPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -33,6 +34,10 @@ const App = () => {
                             <Route
                                 path={RoutesStructure.Shop}
                                 element={<ShopPage />}
+                            />
+                            <Route
+                                path={RoutesStructure.Customer}
+                                element={<CustomerPage />}
                             />
 
                             <Route path="*" element={<NotFoundPage />} />
