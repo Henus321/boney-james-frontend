@@ -16,4 +16,9 @@ export type ShopTypesOptionType = {
     label: string;
 };
 
-export type ShopCityType = "Москва" | "Санкт-Петербург" | "Владивосток";
+export const CityTypes = ["moscow", "saint-petersburg", "vladivostok"] as const;
+export type ShopCityType = (typeof CityTypes)[number];
+export type ShopCityOptionType = {
+    value: ShopCityType;
+    label: string;
+};

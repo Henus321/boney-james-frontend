@@ -94,9 +94,9 @@ const ShopPage = () => {
                         onChange={(e) => onSelect("city", e.target.value)}
                         defaultValue={cityParams || ""}
                     >
-                        {CitiesOptions.map((option) => (
-                            <option key={option} value={option}>
-                                {option}
+                        {CitiesOptions.map(({ value, label }) => (
+                            <option key={value} value={value}>
+                                {label}
                             </option>
                         ))}
                     </select>

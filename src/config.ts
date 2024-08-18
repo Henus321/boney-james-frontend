@@ -1,6 +1,11 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaVk, FaYoutube } from "react-icons/fa";
-import { ShopCityType, ShopTypesOptionType, ShopTypesType } from "./types/shop";
+import {
+    ShopCityType,
+    ShopCityOptionType,
+    ShopTypesOptionType,
+    ShopTypesType,
+} from "./types/shop";
 
 const BaseUrl = "http://localhost:8080";
 
@@ -17,11 +22,24 @@ export const RoutesStructure = {
     Customer: "/customer",
 };
 
-export const CitiesOptions: ShopCityType[] = [
-    "" as ShopCityType,
-    "Москва",
-    "Санкт-Петербург",
-    "Владивосток",
+// TODO все что ниже вынести на бекэнд, в init запрос к странице
+export const CitiesOptions: ShopCityOptionType[] = [
+    {
+        value: "" as ShopCityType,
+        label: "",
+    },
+    {
+        value: "moscow",
+        label: "Москва",
+    },
+    {
+        value: "saint-petersburg",
+        label: "Санкт-Петербург",
+    },
+    {
+        value: "vladivostok",
+        label: "Владивосток",
+    },
 ];
 
 export const ShopTypeOptions: ShopTypesOptionType[] = [
