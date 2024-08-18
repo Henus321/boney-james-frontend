@@ -1,3 +1,4 @@
+import { CitiesOptions } from "../../../../config";
 import { ShopType } from "../../../../types/shop";
 import { beautifyShopTypes } from "../../Helpers";
 
@@ -11,7 +12,10 @@ const ShopCard = ({ shop }: ShopCardProps) => {
     return (
         <div className="shop-card">
             <h3 className="shop-card__title">{shop.name}</h3>
-            <p>{shop.city}</p>
+            <p>
+                {CitiesOptions.find((option) => option.value === shop.city)
+                    ?.label || ""}
+            </p>
             <p>{shop.subway}</p>
             <p>{shop.street}</p>
             <p>{shop.time}</p>
