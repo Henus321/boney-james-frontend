@@ -2,13 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllShops } from "./requests";
 import { CitiesOptions, RoutesStructure, ShopTypeOptions } from "../../config";
 import { useDebounce } from "../../hooks";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-    ShopCityType,
-    ShopPageFormType,
-    ShopTypesType,
-} from "../../types/shop";
 
 import Loader from "../../components/Loader";
 import StatusView from "../../components/StatusView";
@@ -18,32 +13,26 @@ import ShopCard from "./components/ShopCard";
 
 import "./index.scss";
 
-const initialState: ShopPageFormType = {
-    search: "",
-    city: "" as ShopCityType,
-    type: "" as ShopTypesType,
-};
-
 const ShopPage = () => {
-    const [state, setState] = useState(initialState);
+    const [search, setSearch] = useState("");
     const [searchParams, setSearchParams] = useSearchParams();
+    const cityParams = searchParams.get("city");
+    const typeParams = searchParams.get("type");
     const { data, isError, isLoading } = useQuery({
-        queryKey: ["getAllShops"],
-        queryFn: getAllShops,
+        queryKey: ["getAllShops", cityParams, typeParams],
+        queryFn: () => getAllShops(cityParams, typeParams),
     });
-    // TODO debouncedSearch for frontend filtration
-    const debouncedSearch = useDebounce<string>(state.search, 500);
+    const debouncedSearch = useDebounce<string>(search, 500);
 
-    useEffect(() => {
-        // TODO setSearchParams for queryKey(backend filtration)
-        console.log("state:", state.city, state.type);
-    }, [state.city, state.type]);
+    const onSelect = (field: "city" | "type", value: string) => {
+        setSearchParams((params) => {
+            field === "city" &&
+                (!!value ? params.set("city", value) : params.delete("city"));
+            field === "type" &&
+                (!!value ? params.set("type", value) : params.delete("type"));
 
-    const onChange = (
-        field: keyof ShopPageFormType,
-        value: ShopPageFormType[keyof ShopPageFormType]
-    ) => {
-        setState((prev) => ({ ...prev, [field]: value }));
+            return params;
+        });
     };
 
     if (isLoading) return <Loader />;
@@ -55,6 +44,22 @@ const ShopPage = () => {
                 description="Не удалось загрузить данные"
             />
         );
+
+    const foundedCards = data.data.filter((shop) => {
+        if (!debouncedSearch) return true;
+
+        return (
+            shop.name
+                .toLocaleLowerCase()
+                .includes(debouncedSearch.toLocaleLowerCase()) ||
+            shop.street
+                .toLocaleLowerCase()
+                .includes(debouncedSearch.toLocaleLowerCase()) ||
+            shop.subway
+                .toLocaleLowerCase()
+                .includes(debouncedSearch.toLocaleLowerCase())
+        );
+    });
 
     return (
         <div className="shop-page">
@@ -72,22 +77,22 @@ const ShopPage = () => {
             />
 
             <div className="shop-page__actions">
-                <div className="shops-actions__element">
+                <div className="shop-page__actions__element">
                     <label htmlFor="name-input">Поиск</label>
                     <input
-                        onChange={(e) => onChange("search", e.target.value)}
+                        onChange={(e) => setSearch(e.target.value)}
                         id="name-input"
                         autoComplete="off"
                         type="text"
-                        value={state.search}
+                        value={search}
                     />
                 </div>
-                <div className="shops-actions__element">
+                <div className="shop-page__actions__element">
                     <label htmlFor="city-select">Город</label>
                     <select
                         id="city-select"
-                        onChange={(e) => onChange("city", e.target.value)}
-                        defaultValue={""}
+                        onChange={(e) => onSelect("city", e.target.value)}
+                        defaultValue={cityParams || ""}
                     >
                         {CitiesOptions.map((option) => (
                             <option key={option} value={option}>
@@ -96,12 +101,12 @@ const ShopPage = () => {
                         ))}
                     </select>
                 </div>
-                <div className="shops-actions__element">
+                <div className="shop-page__actions__element">
                     <label htmlFor="type-select">Тип</label>
                     <select
                         id="type-select"
-                        defaultValue={""}
-                        onChange={(e) => onChange("type", e.target.value)}
+                        defaultValue={typeParams || ""}
+                        onChange={(e) => onSelect("type", e.target.value)}
                     >
                         {ShopTypeOptions.map(({ value, label }) => (
                             <option key={value} value={value}>
@@ -113,7 +118,7 @@ const ShopPage = () => {
             </div>
 
             <Grid>
-                {data.data.map((shop) => (
+                {foundedCards.map((shop) => (
                     <ShopCard key={shop._id} shop={shop} />
                 ))}
             </Grid>

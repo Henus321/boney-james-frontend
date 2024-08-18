@@ -17,9 +17,3 @@ export type ShopTypesOptionType = {
 };
 
 export type ShopCityType = "Москва" | "Санкт-Петербург" | "Владивосток";
-
-export type ShopPageFormType = {
-    search: string;
-    city: ShopCityType;
-    type: ShopTypesType;
-};
