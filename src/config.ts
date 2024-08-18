@@ -22,7 +22,7 @@ export const RoutesStructure = {
     Customer: "/customer",
 };
 
-// TODO все что ниже вынести на бекэнд, в init запрос к странице
+// TODO все что ниже вынести на бекэнд + данные breadcrumb, заголовк и т д в init запрос к странице
 export const CitiesOptions: ShopCityOptionType[] = [
     {
         value: "" as ShopCityType,
