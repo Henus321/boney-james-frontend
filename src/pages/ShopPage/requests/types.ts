@@ -1,5 +1,4 @@
+import { AxiosResponse } from "../../../types/common";
 import { ShopType } from "../../../types/shop";
 
-export type GetAllShopsResponseType = {
-    data: ShopType[];
-};
+export type GetAllShopsResponseType = AxiosResponse<ShopType[]>;

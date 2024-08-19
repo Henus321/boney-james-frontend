@@ -1,26 +1,27 @@
-import { ShopTypesType } from "../../types/shop";
+import { OptionType } from "../../types/common";
 
-const shopTypePriority: Record<ShopTypesType, number> = {
-    woman: 1,
-    man: 2,
+const shopTypePriority: Record<string, number> = {
+    female: 1,
+    male: 2,
     child: 3,
 };
 
-export const beautifyShopTypes = (types: ShopTypesType[]) => {
+// TODO добавить простое поле на беке, чтобы не собирать это тут
+export const beautifyShopTypes = (types: OptionType[]) => {
     const sortedTypes = types.sort(
-        (a, b) => shopTypePriority[a] - shopTypePriority[b]
+        (a, b) => shopTypePriority[a.value] - shopTypePriority[b.value]
     );
     let str = "Магазин";
 
     for (let i = 0; i < sortedTypes.length; i++) {
         // type
-        if (sortedTypes[i] === "child") {
+        if (sortedTypes[i].value === "child") {
             str += " детской";
         }
-        if (sortedTypes[i] === "woman") {
+        if (sortedTypes[i].value === "female") {
             str += " женской";
         }
-        if (sortedTypes[i] === "man") {
+        if (sortedTypes[i].value === "male") {
             str += " мужской";
         }
 

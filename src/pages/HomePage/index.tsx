@@ -26,7 +26,7 @@ const HomePage = () => {
         );
 
     return (
-        <div className="index-page">
+        <div className="home-page">
             <PageHead
                 breadcrumbOptions={[
                     {

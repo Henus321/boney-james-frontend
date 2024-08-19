@@ -1,11 +1,5 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaVk, FaYoutube } from "react-icons/fa";
-import {
-    ShopCityType,
-    ShopCityOptionType,
-    ShopTypesOptionType,
-    ShopTypesType,
-} from "./types/shop";
 import { AccordionType } from "./types/common";
 
 import SizeTable from "./pages/CustomerPage/components/SizeTable";
@@ -25,45 +19,7 @@ export const RoutesStructure = {
     Customer: "/customer",
 };
 
-// TODO все что ниже вынести на бекэнд + данные breadcrumb, заголовк и т д в init запрос к странице
-export const CitiesOptions: ShopCityOptionType[] = [
-    {
-        value: "" as ShopCityType,
-        label: "",
-    },
-    {
-        value: "moscow",
-        label: "Москва",
-    },
-    {
-        value: "saint-petersburg",
-        label: "Санкт-Петербург",
-    },
-    {
-        value: "vladivostok",
-        label: "Владивосток",
-    },
-];
-
-export const ShopTypeOptions: ShopTypesOptionType[] = [
-    {
-        value: "" as ShopTypesType,
-        label: "",
-    },
-    {
-        value: "child",
-        label: "Одежда для детей",
-    },
-    {
-        value: "woman",
-        label: "Одежда для женщин",
-    },
-    {
-        value: "man",
-        label: "Одежда для мужчин",
-    },
-];
-
+// TODO to back
 export const SocialNetworks = [
     {
         link: "https://www.instagram.com",
@@ -83,6 +39,7 @@ export const SocialNetworks = [
     },
 ];
 
+// TODO to back
 export const CustomerOptions: AccordionType[] = [
     {
         question: "Таблица размеров",
