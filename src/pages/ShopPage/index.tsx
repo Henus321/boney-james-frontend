@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllShops } from "./requests";
-import { CitiesOptions, RoutesStructure, ShopTypeOptions } from "../../config";
+import { RoutesStructure } from "../../config";
 import { useDebounce } from "../../hooks";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -45,7 +45,8 @@ const ShopPage = () => {
             />
         );
 
-    const foundedCards = data.data.filter((shop) => {
+    const { city, types } = data.options;
+    const filteredCards = data.data.filter((shop) => {
         if (!debouncedSearch) return true;
 
         return (
@@ -87,38 +88,45 @@ const ShopPage = () => {
                         value={search}
                     />
                 </div>
-                <div className="shop-page__actions__element">
-                    <label htmlFor="city-select">Город</label>
-                    <select
-                        id="city-select"
-                        onChange={(e) => onSelect("city", e.target.value)}
-                        defaultValue={cityParams || ""}
-                    >
-                        {CitiesOptions.map(({ value, label }) => (
-                            <option key={value} value={value}>
-                                {label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="shop-page__actions__element">
-                    <label htmlFor="type-select">Тип</label>
-                    <select
-                        id="type-select"
-                        defaultValue={typeParams || ""}
-                        onChange={(e) => onSelect("type", e.target.value)}
-                    >
-                        {ShopTypeOptions.map(({ value, label }) => (
-                            <option key={value} value={value}>
-                                {label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                {!!city?.length && (
+                    <div className="shop-page__actions__element">
+                        <label htmlFor="city-select">Город</label>
+                        <select
+                            id="city-select"
+                            onChange={(e) => onSelect("city", e.target.value)}
+                            defaultValue={cityParams || ""}
+                        >
+                            <option value="">{""}</option>
+                            {city.map(({ value, label }) => (
+                                <option key={value} value={value}>
+                                    {label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                )}
+
+                {!!types?.length && (
+                    <div className="shop-page__actions__element">
+                        <label htmlFor="type-select">Тип</label>
+                        <select
+                            id="type-select"
+                            defaultValue={typeParams || ""}
+                            onChange={(e) => onSelect("type", e.target.value)}
+                        >
+                            <option value="">{""}</option>
+                            {types.map(({ value, label }) => (
+                                <option key={value} value={value}>
+                                    {label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                )}
             </div>
 
             <Grid>
-                {foundedCards.map((shop) => (
+                {filteredCards.map((shop) => (
                     <ShopCard key={shop._id} shop={shop} />
                 ))}
             </Grid>
