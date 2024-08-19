@@ -61,7 +61,7 @@ const ShopPage = () => {
                 .includes(debouncedSearch.toLocaleLowerCase())
         );
     });
-    console.log(data);
+
     return (
         <div className="shop-page">
             <PageHead
