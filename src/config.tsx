@@ -7,6 +7,10 @@ import SizeTable from "./pages/CustomerPage/components/SizeTable";
 const BaseUrl = "http://localhost:8080";
 
 export const Requests = {
+    GetCurrentUser: BaseUrl + "/api/v1/auth/me",
+    Login: BaseUrl + "/api/v1/auth/login",
+    Registration: BaseUrl + "/api/v1/auth/registration",
+    Logout: BaseUrl + "/api/v1/auth/logout",
     GetAllCoats: BaseUrl + "/api/v1/coat",
     GetCoatById: BaseUrl + "/api/v1/coat/:id",
     GetAllShops: BaseUrl + "/api/v1/shop",

@@ -1,35 +1,35 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../context/auth.context";
+import { RegistrationFormType } from "../../../types/auth";
 
 import Button from "../../Button";
 import Input from "../../Input";
 
 import "./index.scss";
 
-const initialFormData = {
+const initialFormData: RegistrationFormType = {
     email: "",
-    name: "",
+    username: "",
     password: "",
-    passwordRepeat: "",
+    passwordConfirm: "",
 };
 
 const RegistrationForm = () => {
+    const { registration } = useContext(AuthContext);
     const [formData, setFormData] = useState(initialFormData);
 
     // TODO validation
     const onChange = (field: keyof typeof formData, value: string) =>
         setFormData((prev) => ({ ...prev, [field]: value }));
 
-    const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        console.log("submit reg");
+        registration(formData);
     };
 
     return (
-        <form
-            onSubmit={() => console.log("submit")}
-            className="registration-form"
-        >
+        <form onSubmit={onSubmit} className="registration-form">
             <div className="registration-form__inputs">
                 <Input
                     label="Введите ваш e-mail"
@@ -39,9 +39,9 @@ const RegistrationForm = () => {
                 />
                 <Input
                     label="Введите ваше имя"
-                    value={formData.name}
+                    value={formData.username}
                     id="name"
-                    onChange={(e) => onChange("name", e.target.value)}
+                    onChange={(e) => onChange("username", e.target.value)}
                 />
 
                 <Input
@@ -54,18 +54,15 @@ const RegistrationForm = () => {
                 <Input
                     showIcon
                     label="Повторите пароль"
-                    value={formData.passwordRepeat}
+                    value={formData.passwordConfirm}
                     id="password-repeat"
-                    onChange={(e) => onChange("passwordRepeat", e.target.value)}
+                    onChange={(e) =>
+                        onChange("passwordConfirm", e.target.value)
+                    }
                 />
             </div>
 
-            <Button
-                reverse
-                type="submit"
-                onClick={onSubmit}
-                className="registration-form__button"
-            >
+            <Button reverse type="submit" className="registration-form__button">
                 Зарегистрироваться
             </Button>
         </form>

@@ -1,30 +1,33 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../context/auth.context";
+import { LoginFormType } from "../../../types/auth";
 
 import Button from "../../Button";
 import Input from "../../Input";
 
 import "./index.scss";
 
-const initialFormData = {
+const initialFormData: LoginFormType = {
     email: "",
     password: "",
 };
 
 const LoginForm = () => {
+    const { login } = useContext(AuthContext);
     const [formData, setFormData] = useState(initialFormData);
 
     // TODO validation
     const onChange = (field: keyof typeof formData, value: string) =>
         setFormData((prev) => ({ ...prev, [field]: value }));
 
-    const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        console.log("submit login");
+        login(formData);
     };
 
     return (
-        <form onSubmit={() => console.log("submit")} className="login-form">
+        <form onSubmit={onSubmit} className="login-form">
             <div className="login-form__inputs">
                 <Input
                     label="Введите ваш e-mail"
@@ -41,12 +44,7 @@ const LoginForm = () => {
                 />
             </div>
 
-            <Button
-                reverse
-                type="submit"
-                onClick={onSubmit}
-                className="login-form__button"
-            >
+            <Button reverse type="submit" className="login-form__button">
                 Войти
             </Button>
         </form>

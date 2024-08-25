@@ -11,7 +11,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 200;
     opacity: 0;
-    animation: disappear 0.3s ease-in;
+    //animation: disappear 0.3s ease-in;
     visibility: hidden;
     padding-bottom: env(safe-area-inset-bottom);
 
@@ -33,10 +33,11 @@
         width: 40%;
         height: 100%;
         background-color: var(--color-white);
-        animation: slideBack 0.3s ease-in;
+        //animation: slideBack 0.3s ease-in;
     }
 
-    &--active &__content {
-        animation: slideForth 0.3s ease-out;
-    }
+    // TODO animation
+    //&--active &__content {
+    //    animation: slideForth 0.3s ease-out;
+    //}
 }
