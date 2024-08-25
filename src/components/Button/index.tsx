@@ -7,7 +7,7 @@ type ButtonProps = Overwrite<
     JSX.IntrinsicElements["button"],
     {
         children: React.ReactNode;
-        onClick: () => void;
+        onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
         disabled?: boolean;
         reverse?: boolean;
         className?: string;
@@ -16,7 +16,7 @@ type ButtonProps = Overwrite<
 
 const Button = ({
     children,
-    onClick,
+    onClick = () => {},
     disabled = false,
     reverse = false,
     className,

@@ -1,15 +1,20 @@
 import { Link, useLocation } from "react-router-dom";
 import { RoutesStructure } from "../../config";
 import { FaHeart, FaShoppingBag, FaUser } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/auth.context";
 import classNames from "classnames";
 
 import Typo from "../Typo";
+import Modal from "../Modal";
+import Profile from "../Profile";
 
 import "./index.scss";
 
 const Header = () => {
+    const { user } = useContext(AuthContext);
     const [headerType, setHeaderType] = useState<"full" | "small">("full");
+    const [open, setOpen] = useState(false);
     const { pathname } = useLocation();
 
     useEffect(() => {
@@ -90,8 +95,13 @@ const Header = () => {
             >
                 <FaHeart onClick={() => console.log("Click bookmark")} />
                 <FaShoppingBag onClick={() => console.log("Click cart")} />
-                <FaUser onClick={() => console.log("Click profile")} />
+                <FaUser onClick={() => setOpen(true)} />
             </div>
+
+            {/* TODO portal modal + refactor */}
+            <Modal open={open} setOpen={setOpen}>
+                <Profile user={user} setOpen={setOpen} />
+            </Modal>
         </header>
     );
 };

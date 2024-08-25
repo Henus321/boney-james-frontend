@@ -1,10 +1,10 @@
 import { Requests } from "../../../config";
-import { AxiosResponse } from "../../../types/common";
+import { ApiResponse } from "../../../types/common";
 import { GetAllCoatsResponseType } from "./types";
 import axios from "axios";
 
 export const getAllCoats = async () => {
-    const { data } = await axios.get<AxiosResponse<GetAllCoatsResponseType>>(
+    const { data } = await axios.get<ApiResponse<GetAllCoatsResponseType>>(
         Requests.GetAllCoats
     );
 
