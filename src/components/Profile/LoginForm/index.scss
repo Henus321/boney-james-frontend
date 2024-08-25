@@ -1,0 +1,15 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &__inputs {
+        padding: 4rem 2rem;
+    }
+
+    &__button {
+        margin-top: auto;
+        width: 100%;
+        border-radius: 0;
+    }
+}
